@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boolzap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,22 +20,37 @@
 
             <main>
                 <section class="userbar">
-                    <div class="user-profile">ciao</div>
-                    <div class="notifications"><h1>ciao</h1></div>
-                    <div class="searchbar"><h1>ciao</h1></div>
-                    <div class="contacts"><h1>ciao</h1></div>
+                    <div class="user-profile">Profilo</div>
+                    <div class="notifications"><h1>Notifiche</h1></div>
+                    <div class="searchbar"><h1>Searchbar</h1></div>
+                    <div class="contacts">
+
+                        <article class="article" v-for="(contact, contactIndex) in contacts" @click="selectContact(contactIndex)">
+                            <img class="avatar" :src="contact.avatar" alt="avatar">
+                            <p>
+                                {{ contact.name }}
+                            </p>
+                        </article>
+                    </div>
 
                 </section>
                 <section class="conversation-container">
-                    <div class="user-profile"><div class="img">ciaoo profilo</div></div>
+                    <div class="user-profile">
+                        <article class="article">
+                           
+                            <img class="avatar" :src="contacts[activeContact].avatar" alt="avatar">
+                            <p>
+                               {{ contacts[activeContact].name }} 
+                            </p>
+                        </article>
+                    </div>
                     <div class="messages clearfix">
                         
-                        <article class="message received">
-                            ciaoone
+                        <article class="message" v-for="message in contacts [activeContact].messages" class="message" :class="message.status === 'sent' ? 'sent' : 'received'">
+                            {{ message.message }}
+                            <span class="time"> {{ extractTimeFromDate(message.date) }} </span>
                         </article>
-                        <article class="message sent">
-                            ciaoone
-                        </article>
+               
                         
                     </div>
                     <div class="message-input">ciao</div>
