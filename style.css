@@ -56,14 +56,51 @@ main {
 .userbar .notifications {
     height: 80px;
     background-color: #8edafc;
+    display: flex;
+    direction: row;
+    align-items: center;
+    padding: 10px;
 }
 
 
 .userbar .searchbar {
     height: 60px;
     background-color: #fafafa;
+    align-items: center;
+    display: flex;
+    padding: 5px;
+ 
+    
 }
 
+.input {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 10px 10px 0px;
+    border-style: none;
+
+    padding: 10px;
+   
+}
+
+.input-icon {
+    height: 100%;
+    width: 10%;
+    border-radius: 10px 0px 0px 10px;
+    border-style: none;
+  background-color: white ;
+   padding: 20px;
+
+   
+}
+
+
+
+
+.input-text {
+    width: 100%;
+    padding: 10px;
+}
 
 .userbar .contacts {
     height: calc(100% - 210px);
@@ -142,7 +179,7 @@ div.messages > article.message.sent {
 
 .time {
     display: block;
-    font-size: .6rem;
+    font-size: .5rem;
     color: rgb(198, 194, 198);
     position: absolute;
     bottom: .2rem;
@@ -164,4 +201,13 @@ div.messages > article.message.sent {
     align-items: top;
     padding: 10px;
     align-items: center;
+}
+
+
+.icon {
+    padding: 20px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 10px;
+    color: #8edafc;
 }

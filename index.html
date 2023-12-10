@@ -19,49 +19,68 @@
         <div id="bg">
 
             <main>
+                <!-- Sezione della barra utente -->
                 <section class="userbar">
-                    <div class="user-profile">Profilo</div>
-                    <div class="notifications"><h1>Notifiche</h1></div>
-                    <div class="searchbar"><h1>Searchbar</h1></div>
-                    <div class="contacts">
-
-                        <article class="article" v-for="(contact, contactIndex) in contacts" @click="selectContact(contactIndex)">
-                            <img class="avatar" :src="contact.avatar" alt="avatar">
-                            <p>
-                                {{ contact.name }}
-                            </p>
-                        </article>
-                    </div>
-
-                </section>
-                <section class="conversation-container">
+                    <!-- Profilo utente -->
                     <div class="user-profile">
                         <article class="article">
-                           
-                            <img class="avatar" :src="contacts[activeContact].avatar" alt="avatar">
+                            <img class="avatar" src="./img/avatar_io.png" alt="io">
                             <p>
-                               {{ contacts[activeContact].name }} 
+                                Sofia
                             </p>
                         </article>
                     </div>
-                    <div class="messages clearfix">
-                        
-                        <article class="message" v-for="message in contacts [activeContact].messages" class="message" :class="message.status === 'sent' ? 'sent' : 'received'">
-                            {{ message.message }}
-                            <span class="time"> {{ extractTimeFromDate(message.date) }} </span>
-                        </article>
-               
-                        
+                    <!-- Notifiche -->
+                    <div class="notifications">
+                        <div>
+                            <i class="fa-solid fa-bell-slash icon"></i>
+                        </div>
+                        <div>
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <p>Attiva notifiche desktop</p>
+                        </div>
                     </div>
-                    <div class="message-input">ciao</div>
+                    <!-- Barra di ricerca -->
+                    <div class="searchbar">
+                        <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                        <input v-model="searchQuery" @input="filterContacts" class="input" placeholder="Cerca o inizia una nuova chat" type="text">
+                    </div>
+                    <!-- Lista contatti -->
+                    <div class="contacts">
+                        <article class="article" v-for="(contact, contactIndex) in filterContacts()" @click="selectContact(contactIndex)">
+                            <img class="avatar" :src="contact.avatar" alt="avatar">
+                            <p>{{ contact.name }}</p>
+                        </article>
+                    </div>
+                </section>
+                <!-- Sezione della conversazione -->
+                <section class="conversation-container">
+                    <!-- Profilo contatto attivo -->
+                    <div class="user-profile">
+                        <article class="article">
+                            <img class="avatar" :src="contacts[activeContact].avatar" alt="avatar">
+                            <p>{{ contacts[activeContact].name }}</p>
+                        </article>
+                    </div>
+                    <!-- Messaggi della conversazione -->
+                    <div class="messages clearfix">
+                        <article v-for="message in contacts[activeContact].messages" class="message" :class="message.status === 'sent' ? 'sent' : 'received'">
+                            {{ message.message }}
+                            <span class="time">{{ extractTimeFromDate(message.date) }}</span>
+                        </article>
+                    </div>
+                    <!-- Area di input del messaggio -->
+                    <div class="input-text">
+                        <div class="searchbar">
+                            <input v-model="newMessage" @keyup.enter="sendMessage" class="input" placeholder="Scrivi un messaggio" type="text">
+                        </div>
+                    </div>
                 </section>
             </main>
-
-
-
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.1/build/global/luxon.min.js"></script>
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="./js/script.js"></script>
 </body>

@@ -32,6 +32,8 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+        searchQuery: '',
+        newMessage: '',
         activeContact: 0,
         contacts: [
             {
@@ -200,20 +202,47 @@ createApp({
     };
   },
 
-  methods: {
+   // Definisci i metodi dell'applicazione
+   methods: {
+    // Funzione per selezionare un contatto attivo
     selectContact(index) {
       this.activeContact = index;
     },
 
+    // Funzione per estrarre l'orario da una data
+    extractTimeFromDate(date) {
+        return luxon.DateTime.fromFormat(date, 'dd/MM/yyyy HH:mm:ss').toFormat('HH:mm');
+      },
 
-  extractTimeFromDate(date) {
-    const timeParts = date.split(' ')[1].split(':');
-    return `${timeParts[0]}:${timeParts[1]}`;
-  }
+    // Funzione per inviare un messaggio
+    sendMessage() {
+      if (this.newMessage.trim() !== '') {
+        // Aggiungi il messaggio inviato all'array di messaggi del contatto attivo
+        this.contacts[this.activeContact].messages.push({
+          message: this.newMessage,
+          status: 'sent',
+          date: new Date().toLocaleString(),
+        });
 
+        // Simula una risposta ricevuta dopo un secondo
+        setTimeout(() => {
+          this.contacts[this.activeContact].messages.push({
+            message: '5 minuti e ti richiamo, se non ti richiamo, rileggi il messaggio.',
+            status: 'received',
+            date: new Date().toLocaleString(),
+          });
+        }, 1000);
 
+        // Resetta il campo del nuovo messaggio
+        this.newMessage = '';
+      }
+    },
 
+    // Funzione per filtrare i contatti in base alla query di ricerca
+    filterContacts() {
+      return this.contacts.filter(contact =>
+        contact.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
   },
-
-
 }).mount('#app');
