@@ -1,0 +1,117 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+div#bg {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(#009688 20%, #DCDBD3 20%, #DCDBD3 100%);
+  
+    background-size: 100% 100%; 
+      /* Copre l'intera area con il gradient */
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+main {
+    height: 95%;
+    width: 80%;
+    background-color: red;
+    display: flex;
+}
+
+
+.userbar {
+    width: 35%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-container{
+    width: 65%;
+    background-color: #eaeaea;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.userbar .user-profile{
+    height: 70px;
+    background-color: #eaeaea ;
+}
+
+.userbar .notifications {
+    height: 80px;
+    background-color: #8edafc;
+}
+
+
+.userbar .searchbar {
+    height: 60px;
+    background-color: #fafafa;
+}
+
+
+.userbar .contacts {
+    height: calc(100% - 210px);
+    background-color: #ffff;
+}
+
+div.messages{
+    height: calc(100% - 100px);
+    background-image: url(./img/mine.jpg);
+    padding: 2rem;
+}
+
+
+main section.conversation-container 
+div.message-input{
+    height: 75px;
+    background-color: #f3eeea;
+} 
+
+.clearfix::after{
+    display: block;
+    clear: both;
+    content:'';
+}
+
+
+div.messages > article.message {
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    margin: 0 2rem .8rem ;
+    clear: both;
+    
+
+}
+
+
+div.messages > article.message.received {
+ float: left;
+background-color: #ffff;
+margin-right: 5rem;
+}
+
+div.messages > article.message.sent {
+   float: right;
+   background-color: #d5f9ba;
+   margin-left: 5rem;
+}
+
+
+
+.img {
+    display: flex;
+    height: 70px;
+    width: 20px;
+}
